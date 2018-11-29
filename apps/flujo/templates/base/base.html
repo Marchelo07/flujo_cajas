@@ -40,23 +40,33 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Acreedor
+                    Activo
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url 'view_activo' %}">Listar</a>
                     <a class="dropdown-item" href="{% url 'create_activo' %}">Crear</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'view_prueba' %}">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Activo
+                    Acreedor
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'view_activo' %}">Listar</a>
+                    <a class="dropdown-item" href="">Listar</a>
                     <a class="dropdown-item" href="#">Crear</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Categoria
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'view_categoria' %}">Listar</a>
+                    <a class="dropdown-item" href="{% url 'create_categoria' %}">Crear</a>
                 </div>
             </li>
 

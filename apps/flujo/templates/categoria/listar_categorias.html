@@ -1,0 +1,35 @@
+{% extends 'base/base.html'%}
+
+{% block container %}
+
+{% for message in messages %}
+    {% if message.tags %}
+            <div role="alert" class="alert alert-{{ message.tags }}"> {{ message }}</div>
+    {% endif %}
+{% endfor %}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in categorias %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{obj.tipo}}</td>
+      <td>{{obj.nombre}}</td>
+      <td>
+
+        <a href="{% url 'update_categoria' obj.id %}" type="button" class="btn btn-outline-primary">Editar</a>
+        <a href="" type="button" class="btn btn-outline-danger">Eliminar</a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock%}

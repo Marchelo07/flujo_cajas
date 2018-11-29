@@ -42,6 +42,11 @@ class Categoria(models.Model):
     tipo = models.CharField(max_length=30, choices=properties.TIPO_MOVIMIENTO)
     nombre = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.tipo
+
+    def __str__(self):
+        return self.nombre
 
 class SubCategoria(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
@@ -53,4 +58,4 @@ class Movimiento(models.Model):
     fecha = models.DateField()
     nombre_dia = models.CharField(max_length=30, choices=properties.TIPO_DIA_SEMANA)
     nombre = models.CharField(max_length=200)
-valor = models.DecimalField(decimal_places=2, max_digits=10)
+    valor = models.DecimalField(decimal_places=2, max_digits=10)
