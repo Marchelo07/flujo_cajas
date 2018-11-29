@@ -17,11 +17,12 @@ class ActivoDeleteView(generic.DeleteView):
     def get_success_url(self):
         return reverse('view_activo')
 
+
 class ActivoView(generic.ListView):
     template_name = 'activo/listar_activos.html'  # la ruta donde se encuentra la vista carpeta(activo-> listar_activos.html)
     model = models.Activo  ##importamos el modelos que vamos a llamar para traer la lista
     context_object_name = 'activos'
-    paginate_by = 2
+    paginate_by = 4
 
 
 class ActivoCreateView(generic.CreateView):
@@ -65,7 +66,7 @@ class CategoriaView(generic.ListView):
     template_name = 'categoria/listar_categorias.html'  # la ruta donde se encuentra la vista carpeta(activo-> listar_activos.html)
     model = models.Categoria  ##importamos el modelos que vamos a llamar para traer la lista
     context_object_name = 'categorias'
-    paginate_by = 2
+    paginate_by = 4
 
 
 class CategoriaCreateView(generic.CreateView):
@@ -73,14 +74,14 @@ class CategoriaCreateView(generic.CreateView):
     form_class = forms.FrmCategoria
     model = models.Categoria
 
-    def form_invalid(self, form):
-        """If the form is invalid, render the invalid form."""
-        return self.render_to_response(self.get_context_data(form=form))
-
     def form_valid(self, form):
-        """If the form is valid, save the associated model."""
         self.object = form.save()
+        messages.success(self.request, 'Su Activo se ha guardado correctamente.')
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Lo sentimos no se ha podido procesar la solicitud.')
+        return self.render_to_response(self.get_context_data(form=form))
 
     def get_success_url(self):
         return reverse('view_categoria')

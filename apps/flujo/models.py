@@ -21,6 +21,7 @@ class Activo(models.Model):
     def __str__(self):
         return self.nombre_activo
 
+
 class Acredor(models.Model):
     nombre = models.CharField(max_length=200)
 
@@ -47,6 +48,7 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nombre
+
 
 class SubCategoria(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
