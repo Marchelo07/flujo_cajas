@@ -10,6 +10,52 @@ from django.contrib import messages
 class Home(generic.TemplateView):
     template_name = 'home/login.html'
 
+######### MOVIMIENTOS #########
+class MovimientosView(generic.ListView):
+    template_name = 'movimientos/listar_movimientos.html'  # la ruta donde se encuentra la vista carpeta(activo-> listar_activos.html)
+    model = models.Movimiento  ##importamos el modelos que vamos a llamar para traer la lista
+    context_object_name = 'movimientos'
+    paginate_by = 4
+
+class MovimientosCreateView(generic.CreateView):
+    template_name = 'movimientos/form_movimientos.html'
+    form_class = forms.FrmMovimientos
+    model = models.Movimiento
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Lo sentimos no se ha podido procesar la solicitud.')
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, 'Su Movimiento se ha guardado correctamente.')
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('view_movimientos')
+
+class MovimientosUpdateView(generic.UpdateView):
+    template_name = 'movimientos/form_movimientos.html'
+    form_class = forms.FrmMovimientos
+    model = models.Movimiento
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, 'Su movimientos se ha actualizado correctamente.')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def get_success_url(self):
+        return reverse('view_movimientos')
+
+class MovimientosDeleteView(generic.DeleteView):
+    model =  models.Movimiento
+    template_name = 'movimientos/delete_movimientos.html'
+
+    def get_success_url(self):
+        return reverse('view_movimientos')
 
 ######### OBLIGACIONES #########
 class ObligacionesView(generic.ListView):

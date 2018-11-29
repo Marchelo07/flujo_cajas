@@ -58,6 +58,8 @@ class SubCategoria(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.nombre
 
 class Movimiento(models.Model):
     subcategoria = models.ForeignKey(SubCategoria, on_delete=models.CASCADE)
@@ -65,3 +67,7 @@ class Movimiento(models.Model):
     nombre_dia = models.CharField(max_length=30, choices=properties.TIPO_DIA_SEMANA)
     nombre = models.CharField(max_length=200)
     valor = models.DecimalField(decimal_places=2, max_digits=10)
+
+    def __str__(self):
+        return self.nombre
+

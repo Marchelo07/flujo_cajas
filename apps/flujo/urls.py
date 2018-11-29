@@ -27,5 +27,11 @@ urlpatterns = [
     path('olbigaciones/crear', views.ObligacionesCreateView.as_view(), name= 'create_obligaciones'),
     path('olbigaciones/editar/<int:pk>/', views.ObligacionesUpdateView.as_view(), name='update_obligaciones'),
     path('olbigaciones/eliminar/<int:pk>/', views.ObligacionesDeleteView.as_view(),name = 'delete_obligaciones'),
+
+#Obligaciones
+    path('movimientos/listar', views.MovimientosView.as_view(), name='view_movimientos'),
+    path('movimientos/crear', views.MovimientosCreateView.as_view(), name= 'create_movimientos'),
+    path('movimientos/editar/<int:pk>/', views.MovimientosUpdateView.as_view(), name='update_movimientos'),
+    path('movimientos/eliminar/<int:pk>/', views.MovimientosDeleteView.as_view(),name = 'delete_movimientos'),
 ]
 

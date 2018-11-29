@@ -14,6 +14,18 @@ class FrmActivo(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
+#MOVIMIENTOS#
+class FrmMovimientos(forms.ModelForm):
+
+    class Meta:
+        model = models.Movimiento
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
 #OBLIGACIONES#
 class FrmObligaciones(forms.ModelForm):
 
