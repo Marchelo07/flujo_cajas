@@ -14,11 +14,34 @@ class FrmActivo(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
+#OBLIGACIONES#
+class FrmObligaciones(forms.ModelForm):
 
+    class Meta:
+        model = models.Obligaciones
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
+#CATEGORIA#
 class FrmCategoria(forms.ModelForm):
 
     class Meta:
         model = models.Categoria
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
+#ACREEDOR#
+class FrmAcredor(forms.ModelForm):
+    class Meta:
+        model = models.Acredor
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):

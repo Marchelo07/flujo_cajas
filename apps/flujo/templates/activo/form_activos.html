@@ -2,11 +2,19 @@
 
 {% block container %}
 
+{% for message in messages %}
+    {% if message.tags %}
+            <div role="alert" class="alert alert-{{ message.tags }}"> {{ message }}</div>
+    {% endif %}
+{% endfor %}
+
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
     <div class="form-group">
       <label for="">Nombre de activo</label>
       {{form.nombre_activo}}
+        {{form.nombre_activo.errors}}
+
     </div>
     <div class="form-group">
       <label for="">Valor de activo</label>

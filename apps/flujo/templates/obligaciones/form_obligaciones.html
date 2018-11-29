@@ -1,0 +1,42 @@
+{% extends 'base/base.html'%}
+
+{% block container %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="">Acreedor Obligacion</label>
+        {{form.acredor_obligacion}}
+    </div>
+    <div class="form-group">
+        <label for="">Saldo obligatorio</label>
+        {{form.saldo_obligacion}}
+    </div>
+    <div class="form-group">
+        <label for="">Cuota obligatoria</label>
+        {{form.cuota_obligacion}}
+    </div>
+    <div class="form-group">
+        <label for="">Tiempo</label>
+        {{form.tiempo}}
+    </div>
+
+    <div class="form-group">
+        <label for="">Valor de tiempo</label>
+        {{form.valor_tiempo}}
+    </div>
+
+    <div class="form-group">
+        <label for="">Descripcion</label>
+        {{form.descripcion}}
+    </div>
+
+    <div class="form-group">
+      <label for="">Tasa obligatoria</label>
+      {{form.tasa_obligacion}}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock%}

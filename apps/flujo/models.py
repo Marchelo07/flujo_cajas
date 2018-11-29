@@ -24,9 +24,10 @@ class Activo(models.Model):
 
 class Acredor(models.Model):
     nombre = models.CharField(max_length=200)
+    cedula = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
-        return self.nombre
+        return self.nombre + " cedula:" + self.cedula
 
 
 class Obligaciones(models.Model):
@@ -37,6 +38,9 @@ class Obligaciones(models.Model):
     valor_tiempo = models.PositiveIntegerField()
     descripcion = models.CharField(max_length=500)
     tasa_obligacion = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+
+    def __str__(self):
+        return self.descripcion
 
 
 class Categoria(models.Model):
