@@ -61,6 +61,7 @@ class SubCategoria(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class Movimiento(models.Model):
     subcategoria = models.ForeignKey(SubCategoria, on_delete=models.CASCADE)
     fecha = models.DateField()

@@ -32,13 +32,16 @@ SITE_ID=1
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
     'django.contrib.admin',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.flujo',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -117,8 +120,8 @@ USE_TZ = True
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = '' #my gmail password
-EMAIL_HOST_USER = '' #my gmail username
+EMAIL_HOST_PASSWORD = 'a123456789!' #my gmail password
+EMAIL_HOST_USER = 'cursopythonrcb@gmail.com' #my gmail username
 EMAIL_PORT = 587
 
 
@@ -130,3 +133,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = "/flujo/home/"
