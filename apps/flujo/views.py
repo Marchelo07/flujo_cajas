@@ -6,9 +6,12 @@ from apps.flujo import models
 from apps.flujo import forms
 from django.contrib import messages
 
+from apps.flujo.filters import ActivoFilter
+from apps.flujo.mixin import SecurityMixin
 
-class Home(generic.TemplateView):
-    template_name = 'home/login.html'
+
+class Home(SecurityMixin,generic.TemplateView):
+    template_name = 'home/contenido.html'
 
 ######### MOVIMIENTOS #########
 class MovimientosView(generic.ListView):
@@ -110,6 +113,22 @@ class ActivoView(generic.ListView):
     model = models.Activo  ##importamos el modelos que vamos a llamar para traer la lista
     context_object_name = 'activos'
     paginate_by = 4
+    filter= None #inicializamos el filtro
+
+    #redefinimos la consulta con los filtros
+    def get_queryset(self, **kwargs):
+        filter = ActivoFilter(self.request.GET, queryset=super().get_queryset())
+        self.filter = filter
+        return filter.qs.order_by('id')
+
+    #envio el fomulario ya con el filtro a la vista
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['frm_filter'] = self.filter.form
+        pk = self.kwargs.get("pk") #capturamos el id del item
+        context['frm_activo'] = forms.FrmActivo(self.request.POST or None,
+                                                instance=models.Activo.objects.filter(pk=pk).first())
+        return context
 
 class ActivoCreateView(generic.CreateView):
     template_name = 'activo/form_activos.html'
